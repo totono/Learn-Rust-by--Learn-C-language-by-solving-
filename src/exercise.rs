@@ -173,7 +173,6 @@ pub mod ex502{
         for i in array.iter().rev() {
             println!("{}",*i);
         }
-        //println!("{:?}",array.reverse());
 
         //array.reverse()は()を返すのでコンパイルエラー。なんで？
         array.reverse();
@@ -194,10 +193,10 @@ pub mod ex503{
 
 pub mod ex504{
     use crate::input::cli::get_input;
+    const ELEMENTS_NUMBER:usize = 7;
 
-    const ELEMENTS:usize = 7;
-    pub fn ans504() -> [u32;ELEMENTS]{
-        let mut array = [0;ELEMENTS];
+    pub fn ans504() -> [u32;ELEMENTS_NUMBER]{
+        let mut array:[u32;ELEMENTS_NUMBER] = [0;ELEMENTS_NUMBER];
 
         for i in array.iter_mut(){
             match get_input().parse(){
@@ -207,6 +206,52 @@ pub mod ex504{
             };
         }
 
+        println!("{:?}",array);
+        array.reverse();
+        println!("{:?}",array);
         array
+    }
+}
+
+
+//汚い　もうすこしやりようがあるはず
+pub mod ex505{
+
+    use crate::input::cli::get_input;
+    pub fn ans505(){
+    println!("How many number of people?");
+    let number:usize = input_number();
+
+//    let mut scores:Vec<usize> = Vec::new();
+    let mut bunpu:[usize;11] = [0;11];
+
+    for i in  0..number {
+        println!("{}番",i + 1);
+//        scores.push(input_number());
+        bunpu[input_number() / 10] += 1;
+    }
+
+    for (i,item) in bunpu.iter().enumerate().take(10){
+        println!("{} ～ {}",i*10,i*10+9);
+            for _j in 0..*item{
+                print!("*");
+            }
+        println!();
+    }
+    println!("     100");
+    for _i in 0..bunpu[10]{
+        print!("*");
+    }
+        println!();
+
+   }
+
+   fn input_number() -> usize{
+       loop{
+            match get_input().parse(){
+                Ok(n) => return n,
+                Err(_e) => {println!("Invalid number"); continue}
+            }
+       }
     }
 }
