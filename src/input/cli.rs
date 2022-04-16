@@ -1,8 +1,8 @@
 use std::io;
 
+
 pub fn get_input() -> String {
     let mut word = String::new();
-    println!("Please enter the number");
     io::stdin().read_line(&mut word).ok();
     word.trim().to_string()
 }

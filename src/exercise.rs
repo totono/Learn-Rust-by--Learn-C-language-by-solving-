@@ -218,39 +218,46 @@ pub mod ex504{
 pub mod ex505{
 
     use crate::input::cli::get_input;
-    pub fn ans505(){
-    println!("How many number of people?");
-    let number:usize = input_number();
+    pub fn ans505(scores : Vec<usize>) -> [usize;11]{
 
-//    let mut scores:Vec<usize> = Vec::new();
     let mut bunpu:[usize;11] = [0;11];
 
-    for i in  0..number {
-        println!("{}番",i + 1);
-//        scores.push(input_number());
-        bunpu[input_number() / 10] += 1;
+    for i in  0..scores.len() {
+        println!("{}番\n{}",i + 1,scores[i]);
+        bunpu[scores[i] / 10] += 1;
     }
+    bunpu
 
-    for (i,item) in bunpu.iter().enumerate().take(10){
-        println!("{} ～ {}",i*10,i*10+9);
-            for _j in 0..*item{
-                print!("*");
-            }
-        println!();
-    }
-    println!("     100");
-    for _i in 0..bunpu[10]{
-        print!("*");
-    }
-        println!();
+//    for (i,item) in bunpu.iter().enumerate().take(10){
+//        println!("{} ～ {}",i*10,i*10+9);
+//            for _j in 0..*item{
+//                print!("*");
+//            }
+//        println!();
+//    }
+//    println!("     100");
+//    for _i in 0..bunpu[10]{
+//        print!("*");
+//    }
+//        println!();
 
+   }
+
+   pub fn input_scores() -> Vec<usize>{
+        let mut vec:Vec<usize> = Vec::new();
+        let how_many = input_number();
+        for i in 0..how_many{
+            println!("{}番",i);
+            vec.push(input_number());
+        }
+        vec
    }
 
    fn input_number() -> usize{
        loop{
             match get_input().parse(){
                 Ok(n) => return n,
-                Err(_e) => {println!("Invalid number"); continue}
+                Err(e) => {println!("Invalid number: {}",e); continue}
             }
        }
     }
