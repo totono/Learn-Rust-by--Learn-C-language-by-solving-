@@ -1,4 +1,4 @@
-use ex::exercise::ex504::ans504;
+use ex::ex05::ex504::ans504;
 
 #[cfg(test)]
 mod tests{
