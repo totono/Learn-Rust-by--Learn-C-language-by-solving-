@@ -63,11 +63,10 @@ pub mod ex504{
 }
 
 
-//汚い　もうすこしやりようがあるはず
 pub mod ex505{
 
     use crate::input::cli::get_input;
-    pub fn ans505(scores : Vec<usize>) -> [usize;11]{
+    pub fn create_bunpu(scores : Vec<usize>) -> [usize;11]{
 
     let mut bunpu:[usize;11] = [0;11];
 
@@ -76,20 +75,6 @@ pub mod ex505{
         bunpu[scores[i] / 10] += 1;
     }
     bunpu
-
-//    for (i,item) in bunpu.iter().enumerate().take(10){
-//        println!("{} ～ {}",i*10,i*10+9);
-//            for _j in 0..*item{
-//                print!("*");
-//            }
-//        println!();
-//    }
-//    println!("     100");
-//    for _i in 0..bunpu[10]{
-//        print!("*");
-//    }
-//        println!();
-
    }
 
    pub fn input_scores(how_many: usize) -> Vec<usize>{
@@ -109,5 +94,44 @@ pub mod ex505{
                 Err(e) => {println!("Invalid number: {}",e); continue}
             }
        }
+    }
+}
+
+pub mod ex506{
+    use super::ex505::{create_bunpu,input_scores,input_number};
+
+    pub fn ans506(){
+        println!("How many people?");
+        let how_many = input_number();
+        let scores = input_scores(how_many);
+        let bunpu = create_bunpu(scores);
+
+        let mut bunpu_max = 0;
+
+        for i in bunpu.iter(){
+            if bunpu[*i] > bunpu_max {
+                bunpu_max = bunpu[*i];
+            }
+        }
+
+        for i in (1..=bunpu_max).rev(){
+            for j in &bunpu{
+                if *j >= i {
+                    print!(" * ");
+                } else {
+                    print!("   ");
+                }
+            }
+            println!();                
+        }
+
+        for _i in 0..33{
+            print!("-");
+        }
+        println!();
+        for i in 0..=10{
+            print!(" {}",i * 10);
+        }
+        println!();
     }
 }

@@ -1,3 +1,3 @@
-pub mod ex04;
-pub mod ex05;
+pub mod act04;
+pub mod act05;
 mod input;

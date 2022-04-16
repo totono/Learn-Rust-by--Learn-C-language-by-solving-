@@ -1,4 +1,4 @@
-use ex::ex04::ex425::ans425;
+use ex::act04::ex425::ans425;
 
 #[cfg(test)]
 mod tests{
