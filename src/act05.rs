@@ -110,7 +110,7 @@ pub mod ex506 {
 
         let bunpu_max = match bunpu.iter().max() {
             Some(n) => *n,
-            None => 0
+            None => 0,
         };
 
         for i in (1..=bunpu_max).rev() {
@@ -136,59 +136,88 @@ pub mod ex506 {
 }
 
 pub mod ex506_struct {
-    use super::ex505::{input_number, input_scores, create_bunpu};
+    use super::ex505::{create_bunpu, input_number, input_scores};
 
     struct ScoreGraph {
         //scores : Vec<usize>,
-        bunpu : [usize;11],
+        bunpu: [usize; 11],
     }
 
-    impl ScoreGraph{
-        fn new() -> Self{
-            let sc = input_scores(input_number());
-            let bu = create_bunpu(&sc);
-            ScoreGraph{
+    impl ScoreGraph {
+        fn new() -> Self {
+            println!("Please enter how many people");
+            let scores = input_scores(input_number());
+            ScoreGraph {
                 //scores:sc,
-                bunpu:bu,
+                bunpu: create_bunpu(&scores),
             }
         }
 
-        //fn display_graph_tate(&self) {
-        //
-        //}
-
-        fn display_graph_yoko(&self) {
-            
-        let bunpu_max = match self.bunpu.iter().max() {
-            Some(n) => *n,
-            None => 0
-        };
-        
-        for i in (1..=bunpu_max).rev() {
-            for j in &self.bunpu {
-                if *j >= i {
-                    print!(" * ");
-                } else {
-                    print!("   ");
+        fn display_graph_tate(&self) {
+            for (i, item) in self.bunpu.iter().enumerate().take(10) {
+                println!("{} ～ {}", i * 10, i * 10 + 9);
+                for _j in 0..*item {
+                    print!("*");
                 }
+                println!();
+            }
+            println!("     100");
+            for _i in 0..self.bunpu[10] {
+                print!("*");
             }
             println!();
         }
 
-        for _i in 0..33 {
-            print!("-");
-        }
-        println!();
-        for i in 0..=10 {
-            print!(" {}", i * 10);
-        }
-        println!();
-        }
+        fn display_graph_yoko(&self) {
+            let bunpu_max = match self.bunpu.iter().max() {
+                Some(n) => *n,
+                None => 0,
+            };
 
+            for i in (1..=bunpu_max).rev() {
+                for j in &self.bunpu {
+                    if *j >= i {
+                        print!(" * ");
+                    } else {
+                        print!("   ");
+                    }
+                }
+                println!();
+            }
+
+            for _i in 0..33 {
+                print!("-");
+            }
+            println!();
+            for i in 0..=10 {
+                print!(" {}", i * 10);
+            }
+            println!();
+        }
     }
 
-    pub fn ans506_struct(){
-        let graph = ScoreGraph::new();
-        graph.display_graph_yoko();
+    pub fn ans506_struct() {
+        let graph1 = ScoreGraph::new();
+        let graph2 = ScoreGraph::new();
+
+        println!("First graph");
+        graph1.display_graph_yoko();
+        println!("Second graph");
+        graph2.display_graph_tate();
+    }
+}
+
+
+pub mod ex509 {
+    pub fn ans509(mut array : [i32;5]) -> [i32;5]{
+        array.reverse();
+        array
+    }
+}
+
+pub mod ex510{
+    pub fn ans510(array : [i32;5]) -> Vec<i32>{
+       let ans:Vec<i32> = array.into_iter().filter(|x| *x > 0).collect();
+       ans
     }
 }

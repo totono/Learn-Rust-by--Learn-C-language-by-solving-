@@ -19,13 +19,13 @@
 	"Rust test": {
 		"prefix": "test",
 		"body": [
-			"use ex::ex$0::ex$1::ans$1;",
+			"use ex::act$1::ex$2::ans$2;",
 			"",
 			"#[cfg(test)]",
 			"mod tests{",
 			"\t#[test]",
-			"\tfn test_ex${1:test_name}() {",
-			"\t\tassert_eq!(ans$1(),$2)",
+			"\tfn test_ex${2:test_name}() {",
+			"\t\tassert_eq!(crate::ans$2(),$3)",
 			"\t}",
 			"}"
 		]
