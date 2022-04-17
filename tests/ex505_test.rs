@@ -6,7 +6,7 @@ mod tests {
     fn test_ex505() {
         let scores = vec![10, 10, 20, 20, 50];
         let bunpu: [usize; 11] = [0, 2, 2, 0, 0, 1, 0, 0, 0, 0, 0];
-        assert_eq!(create_bunpu(scores), bunpu);
+        assert_eq!(create_bunpu(&scores), bunpu);
     }
 
     #[test]
@@ -14,7 +14,7 @@ mod tests {
         println!("How many people?");
         let how_many = input_number();
         let scores = input_scores(how_many);
-        let bunpu = create_bunpu(scores);
+        let bunpu = create_bunpu(&scores);
 
         for (i, item) in bunpu.iter().enumerate().take(10) {
             println!("{} ～ {}", i * 10, i * 10 + 9);
