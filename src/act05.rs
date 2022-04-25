@@ -221,3 +221,39 @@ pub mod ex510{
        ans
     }
 }
+
+
+
+//must learn how to use generics.
+//
+pub mod ex512{
+    use crate::{input::cli::get_input, act05::ex505::input_number};
+
+
+    
+    pub struct SubjectScore {
+        pub math:u32,
+        pub language:u32,
+    }
+    
+    impl SubjectScore {
+
+        pub fn new() -> SubjectScore{
+            println!("math");
+            let math_score = (input_number()) as u32;
+            println!("language");
+            let language_score = (input_number()) as u32;
+            SubjectScore { math: math_score, language: language_score }
+        }
+
+        pub fn sum(&self) -> u32 {
+            self.math + self.language
+        }
+
+        pub fn average(&self) -> f32 {
+        ((self.math) as f32 + (self.language) as f32) / 2.0
+        }
+
+    }
+
+}
